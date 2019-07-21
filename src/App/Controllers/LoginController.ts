@@ -46,7 +46,7 @@ export class LoginController {
         }
         const user = await this.usersRepository.getUserByEmail(normalizedBody.email);
         if (!user) {
-            res.status(400).json({messsage: 'USER_DOES_NOT_EXIST'});
+            res.status(400).json({message: 'USER_DOES_NOT_EXIST'});
             return;
         }
         if (compareSync(normalizedBody.password, user.password)) {

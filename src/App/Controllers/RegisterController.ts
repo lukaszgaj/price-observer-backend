@@ -50,7 +50,7 @@ export class RegisterController {
             res.status(400).json({message: 'USER_ALREADY_EXISTS'});
             return;
         }
-        this.usersRepository.store(normalizedBody);
+        await this.usersRepository.store(normalizedBody);
         res.status(200).json({message: 'STORED_SUCCESSFULLY'});
     }
 }
