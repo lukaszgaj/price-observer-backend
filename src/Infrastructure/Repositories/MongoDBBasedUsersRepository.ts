@@ -23,26 +23,27 @@ export class MongoDBBasedUsersRepository implements UsersRepository {
             });
     }
 
-    getUserByName(name: string): any {
-        return this.userModel.findOne({
+    async getUserByName(name: string): Promise<User | null> {
+        return await this.userModel.findOne({
             name,
-        }, (err, res) => {
-            if (err) {
-                throw err;
-            }
-            return res;
-        });
+        })
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                throw new Error(err);
+            });
     }
 
-    store(user: User): void {
-        this.userModel.create({
+    async store(user: User): Promise<void> {
+        await this.userModel.create({
             email: user.email,
             name: user.name,
             password: user.password,
         }).then(res => {
             return res;
         }).catch(e => {
-            console.log('Couldnt store user because of: ', e);
+            console.log('Could not store user because of: ', e);
         });
     }
 }
