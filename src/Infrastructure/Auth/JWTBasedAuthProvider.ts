@@ -1,9 +1,9 @@
 import express from 'express';
+import {injectable} from 'inversify';
 import {interfaces} from 'inversify-express-utils';
 import {verify} from 'jsonwebtoken';
 import {UserDetails} from '../../Domain/Auth/UserDetails';
 import {Principal} from './Principal';
-import {injectable} from 'inversify';
 
 @injectable()
 export class JWTBasedAuthProvider implements interfaces.AuthProvider {

@@ -13,7 +13,7 @@ export class Principal implements AuthPrincipal, interfaces.Principal {
     }
 
     getDetails(): UserDetails {
-        if (!this.details || this.token) {
+        if (!this.details || !this.token) {
             throw new Error('Make sure user is authenticated');
         }
 
