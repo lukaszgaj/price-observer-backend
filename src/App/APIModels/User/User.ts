@@ -11,7 +11,7 @@ import {pre, prop, Typegoose} from 'typegoose';
 })
 @injectable()
 export class User extends Typegoose {
-    static readonly TYPE = 'USER';
+    static readonly TYPE = 'User';
 
     _id: string;
 
