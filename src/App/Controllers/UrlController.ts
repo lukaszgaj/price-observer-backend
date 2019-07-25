@@ -1,11 +1,13 @@
 import {plainToClass} from 'class-transformer';
 import express from 'express';
-import {controller, httpPost, request, response} from 'inversify-express-utils';
+import {controller, httpPost, principal, request, response} from 'inversify-express-utils';
 import rp from 'request-promise';
 import {ApiOperationPost, ApiPath} from 'swagger-express-ts';
 import parse from 'url-parse';
+import {Principal} from '../../Infrastructure/Auth/Principal';
 import {MoreleParser} from '../../Infrastructure/Services/Parsers/MoreleParser';
 import {Url} from '../APIModels/Url/Url';
+import {checkAuthentication} from '../Utils/checkAuthentication';
 
 const path = '/url';
 
@@ -32,12 +34,15 @@ export class UrlController {
         responses: {
             200: {description: 'OK'},
         },
+        security: {apiKeyHeader: []},
     })
     @httpPost('/parse-product')
     async parse(
         @request() req: express.Request,
         @response() res: express.Response,
+        @principal() authPrincipal: Principal,
     ) {
+        await checkAuthentication(authPrincipal);
         const normalizedBody = plainToClass(Url, req.body);
         if (!normalizedBody.path) {
             res.status(400).json({message: 'PLEASE_PROVIDE_VALID_DATA'});
