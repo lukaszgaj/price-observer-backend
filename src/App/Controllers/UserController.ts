@@ -83,11 +83,11 @@ export class UserController {
             return;
         }
         if (await this.usersRepository.getUserByEmail(normalizedBody.email)) {
-            res.status(409).json({message: 'USER_ALREADY_EXISTS'});
+            res.status(409).json({message: 'USER_WITH_THIS_EMAIL_ALREADY_EXISTS'});
             return;
         }
         if (await this.usersRepository.getUserByName(normalizedBody.name)) {
-            res.status(409).json({message: 'USER_ALREADY_EXISTS'});
+            res.status(409).json({message: 'USER_WITH_THIS_NAME_ALREADY_EXISTS'});
             return;
         }
         await this.usersRepository.store(normalizedBody);

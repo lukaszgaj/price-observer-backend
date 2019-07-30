@@ -18,7 +18,7 @@ export class MoreleParser implements Parser {
         return $('.prod-info-inside > div > .prod-name', this.html).text();
     }
     getImgSrc() {
-        return $('.gallery-holder > div > img', this.html).attr('src');
+        return $('.swiper-wrapper.gallery-holder > div > img', this.html).attr('src');
     }
     getCurrentPrice() {
         // TODO DO IT BETTER
@@ -37,6 +37,7 @@ export class MoreleParser implements Parser {
 
     getProductData(html: string): Parser.ProductData {
         this.html = html;
+        console.log('img', this.getImgSrc());
         return {
             category: this.getCategory(),
             currentPrice: this.getCurrentPrice(),

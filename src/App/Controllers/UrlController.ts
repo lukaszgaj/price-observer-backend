@@ -21,6 +21,7 @@ export class UrlController {
         private moreleParser: MoreleParser,
     ) {
     }
+
     @ApiOperationPost({
         description: 'Return information about product',
         parameters: {
