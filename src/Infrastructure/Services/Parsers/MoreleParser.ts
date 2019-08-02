@@ -18,7 +18,7 @@ export class MoreleParser implements Parser {
         return $('.prod-info-inside > div > .prod-name', this.html).text();
     }
     getImgSrc() {
-        return $('.swiper-wrapper.gallery-holder > div > img', this.html).attr('src');
+        return $('.swiper-wrapper.gallery-holder > div', this.html).attr('data-default-src');
     }
     getCurrentPrice() {
         // TODO DO IT BETTER
