@@ -176,14 +176,13 @@ export class ProductsController {
         }
 
         if (productFromDatabase && productFromDatabase.usersDetails.length > 1) {
-            productFromDatabase.usersDetails.filter((user: UserDetails) => user.userId !== currentUserDetails.userId);
+            productFromDatabase.usersDetails = productFromDatabase.usersDetails.filter((user: UserDetails) => user.userId !== currentUserDetails.userId);
             await this.productsRepository.updateOne(normalizedBody.productId, normalizedBody.shopName, productFromDatabase);
             res.status(200).json({message: 'PRODUCT_REMOVED_SUCCESSFULLY'});
             return;
         }
 
-        productFromDatabase.usersDetails.filter((user: UserDetails) => user.userId !== currentUserDetails.userId);
-        await this.productsRepository.updateOne(normalizedBody.productId, normalizedBody.shopName, productFromDatabase);
+        await this.productsRepository.remove(productFromDatabase);
         res.status(200).json({message: 'PRODUCT_REMOVED_SUCCESSFULLY'});
         return;
     }

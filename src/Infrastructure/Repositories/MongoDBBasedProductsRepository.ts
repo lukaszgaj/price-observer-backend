@@ -57,6 +57,16 @@ export class MongoDBBasedProductsRepository implements ProductsRepository {
         });
     }
 
+    async remove(product: Product): Promise<void> {
+        await this.productModel.remove({productId: product.productId})
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                throw new Error(err);
+            });
+    }
+
     async updateOne(productId: string, shopName: string, product: Product): Promise<Product | null> {
         return await this.productModel.findOneAndUpdate(
             {
