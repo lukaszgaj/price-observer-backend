@@ -1,6 +1,7 @@
 import {injectable} from 'inversify';
 import {Product} from '../../App/APIModels/Product/Product';
 import {ProductsRepository} from '../../Domain/Repositories/ProductsRepository';
+import {UserDetails} from '../../App/APIModels/Product/UserDetails';
 
 @injectable()
 export class MongoDBBasedProductsRepository implements ProductsRepository {
@@ -16,9 +17,7 @@ export class MongoDBBasedProductsRepository implements ProductsRepository {
             productId,
             shopName,
         })
-            .then(res => {
-                return res;
-            })
+            .then(res => res)
             .catch(err => {
                 throw new Error(err);
             });
@@ -26,10 +25,15 @@ export class MongoDBBasedProductsRepository implements ProductsRepository {
 
     async getAll(userId: string): Promise<Product[] | null> {
         return await this.productModel.find({
-            assignedTo: userId,
+            'usersDetails.userId': userId,
         })
             .then(res => {
-                return res;
+                const productsWithoutOtherUsersInfo: Product[] = res.map((product: Product) => {
+                    const currentUserDetails = product.usersDetails.find((user: UserDetails) => user.userId === userId);
+                    product.usersDetails = [currentUserDetails!];
+                    return product;
+                });
+                return productsWithoutOtherUsersInfo;
             })
             .catch(err => {
                 throw new Error(err);
@@ -37,13 +41,11 @@ export class MongoDBBasedProductsRepository implements ProductsRepository {
     }
 
     async store(product: Product): Promise<void> {
-        const {productId, category, currentPrice, expectedPrice, imgSrc, name, shopName, addedAt, assignedTo} = product;
+        const {productId, category, currentPrice, imgSrc, name, shopName, usersDetails} = product;
         await this.productModel.create({
-            addedAt: addedAt ? addedAt : new Date().toISOString(),
-            assignedTo,
+            usersDetails: usersDetails,
             category: category ? category : undefined,
             currentPrice,
-            expectedPrice: expectedPrice ? expectedPrice : undefined,
             imgSrc: imgSrc ? imgSrc : undefined,
             name,
             productId,
@@ -57,11 +59,11 @@ export class MongoDBBasedProductsRepository implements ProductsRepository {
 
     async updateOne(productId: string, shopName: string, product: Product): Promise<Product | null> {
         return await this.productModel.findOneAndUpdate(
-        {
-            productId,
-            shopName,
-        },
-        product,
+            {
+                productId,
+                shopName,
+            },
+            product,
             {upsert: false},
         )
             .then(res => {

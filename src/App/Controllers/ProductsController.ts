@@ -4,8 +4,9 @@ import {controller, httpGet, httpPost, principal, request, response} from 'inver
 import {ApiOperationGet, ApiOperationPost, ApiPath} from 'swagger-express-ts';
 import {ProductsRepository} from '../../Domain/Repositories/ProductsRepository';
 import {Principal} from '../../Infrastructure/Auth/Principal';
-import {Product} from '../APIModels/Product/Product';
 import {checkAuthentication} from '../Utils/checkAuthentication';
+import {UserDetails} from '../APIModels/Product/UserDetails';
+import {Product} from '../APIModels/Product/Product';
 
 const path = '/products';
 
@@ -44,29 +45,33 @@ export class ProductsController {
         await checkAuthentication(authPrincipal);
         const normalizedBody = plainToClass(Product, req.body);
         if (!normalizedBody.name ||
-            !normalizedBody.currentPrice ||
             !normalizedBody.productId ||
+            !normalizedBody.currentPrice ||
+            !normalizedBody.usersDetails ||
             !normalizedBody.shopName) {
             res.status(400).json({message: 'PLEASE_PROVIDE_VALID_DATA'});
             return;
         }
         const productFromDatabase =
             await this.productsRepository.getOne(normalizedBody.productId, normalizedBody.shopName);
-        const userId = authPrincipal.getDetails().userId.toString();
+        const currentUserDetails: UserDetails = normalizedBody.usersDetails[0];
+        currentUserDetails.userId = authPrincipal.getDetails().userId.toString();
+        currentUserDetails.addedAt = new Date().toISOString();
 
         if (!productFromDatabase) {
-            normalizedBody.assignedTo = [];
-            normalizedBody.assignedTo.push(userId);
+            normalizedBody.usersDetails = [];
+            normalizedBody.usersDetails.push(currentUserDetails);
             await this.productsRepository.store(normalizedBody);
             res.status(200).json({message: 'STORED_SUCCESSFULLY'});
             return;
         }
 
-        if (productFromDatabase && productFromDatabase.assignedTo.includes(userId)) {
+        if (productFromDatabase && productFromDatabase.usersDetails.find((user: UserDetails) => user.userId === currentUserDetails.userId)) {
             res.status(409).json({message: 'USER_ALREADY_ASSIGNED_TO_PRODUCT'});
             return;
         }
-        productFromDatabase.assignedTo.push(userId);
+
+        productFromDatabase.usersDetails.push(currentUserDetails);
         await this.productsRepository.updateOne(normalizedBody.productId, normalizedBody.shopName, productFromDatabase);
         res.status(200).json({message: 'PRODUCT_UPDATED_SUCCESSFULLY'});
     }
