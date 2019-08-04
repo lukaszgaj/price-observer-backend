@@ -76,6 +76,118 @@ export class ProductsController {
         res.status(200).json({message: 'PRODUCT_UPDATED_SUCCESSFULLY'});
     }
 
+    @ApiOperationPost({
+        description: 'Edit product',
+        parameters: {
+            body: {
+                description: 'Edit product data',
+                model: Product.TYPE,
+                required: true,
+            },
+        },
+        path: '/edit',
+        responses: {
+            200: {description: 'OK'},
+        },
+        security: {apiKeyHeader: []},
+    })
+    @httpPost('/edit')
+    async edit(
+        @request() req: express.Request,
+        @response() res: express.Response,
+        @principal() authPrincipal: Principal,
+    ) {
+        await checkAuthentication(authPrincipal);
+        const normalizedBody = plainToClass(Product, req.body);
+        if (!normalizedBody.name ||
+            !normalizedBody.productId ||
+            !normalizedBody.currentPrice ||
+            !normalizedBody.usersDetails ||
+            !normalizedBody.shopName) {
+            res.status(400).json({message: 'PLEASE_PROVIDE_VALID_DATA'});
+            return;
+        }
+        const productFromDatabase =
+            await this.productsRepository.getOne(normalizedBody.productId, normalizedBody.shopName);
+        const currentUserDetails: UserDetails = normalizedBody.usersDetails[0];
+        currentUserDetails.userId = authPrincipal.getDetails().userId.toString();
+
+        if (!productFromDatabase) {
+            res.status(409).json({message: 'PRODUCT_DOES_NOT_EXIST'});
+            return;
+        }
+
+        if (productFromDatabase && !productFromDatabase.usersDetails.find((user: UserDetails) => user.userId === currentUserDetails.userId)) {
+            res.status(409).json({message: 'USER_IS_NOT_ASSIGNED_TO_THE_PRODUCT'});
+            return;
+        }
+
+        const index = productFromDatabase.usersDetails.findIndex((user: UserDetails) => user.userId === currentUserDetails.userId);
+        currentUserDetails.addedAt = productFromDatabase.usersDetails[index].addedAt;
+        productFromDatabase.usersDetails[index] = currentUserDetails;
+        await this.productsRepository.updateOne(normalizedBody.productId, normalizedBody.shopName, productFromDatabase);
+        res.status(200).json({message: 'PRODUCT_UPDATED_SUCCESSFULLY'});
+    }
+
+    @ApiOperationPost({
+        description: 'Edit product',
+        parameters: {
+            body: {
+                description: 'Edit product data',
+                model: Product.TYPE,
+                required: true,
+            },
+        },
+        path: '/edit',
+        responses: {
+            200: {description: 'OK'},
+        },
+        security: {apiKeyHeader: []},
+    })
+    @httpPost('/remove')
+    async remove(
+        @request() req: express.Request,
+        @response() res: express.Response,
+        @principal() authPrincipal: Principal,
+    ) {
+        await checkAuthentication(authPrincipal);
+        const normalizedBody = plainToClass(Product, req.body);
+        if (!normalizedBody.name ||
+            !normalizedBody.productId ||
+            !normalizedBody.currentPrice ||
+            !normalizedBody.usersDetails ||
+            !normalizedBody.shopName) {
+            res.status(400).json({message: 'PLEASE_PROVIDE_VALID_DATA'});
+            return;
+        }
+        const productFromDatabase =
+            await this.productsRepository.getOne(normalizedBody.productId, normalizedBody.shopName);
+        const currentUserDetails: UserDetails = normalizedBody.usersDetails[0];
+        currentUserDetails.userId = authPrincipal.getDetails().userId.toString();
+
+        if (!productFromDatabase) {
+            res.status(409).json({message: 'PRODUCT_DOES_NOT_EXIST'});
+            return;
+        }
+
+        if (productFromDatabase && !productFromDatabase.usersDetails.find((user: UserDetails) => user.userId === currentUserDetails.userId)) {
+            res.status(409).json({message: 'USER_IS_NOT_ASSIGNED_TO_THE_PRODUCT'});
+            return;
+        }
+
+        if (productFromDatabase && productFromDatabase.usersDetails.length > 1) {
+            productFromDatabase.usersDetails.filter((user: UserDetails) => user.userId !== currentUserDetails.userId);
+            await this.productsRepository.updateOne(normalizedBody.productId, normalizedBody.shopName, productFromDatabase);
+            res.status(200).json({message: 'PRODUCT_REMOVED_SUCCESSFULLY'});
+            return;
+        }
+
+        productFromDatabase.usersDetails.filter((user: UserDetails) => user.userId !== currentUserDetails.userId);
+        await this.productsRepository.updateOne(normalizedBody.productId, normalizedBody.shopName, productFromDatabase);
+        res.status(200).json({message: 'PRODUCT_REMOVED_SUCCESSFULLY'});
+        return;
+    }
+
     @ApiOperationGet({
         description: 'Get all products assigned to authorized user',
         path: '/all',
