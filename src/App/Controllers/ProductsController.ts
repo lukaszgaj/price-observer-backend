@@ -48,7 +48,8 @@ export class ProductsController {
             !normalizedBody.productId ||
             !normalizedBody.currentPrice ||
             !normalizedBody.usersDetails ||
-            !normalizedBody.shopName) {
+            !normalizedBody.shopName ||
+            !normalizedBody.URL) {
             res.status(400).json({message: 'PLEASE_PROVIDE_VALID_DATA'});
             return;
         }
@@ -202,7 +203,7 @@ export class ProductsController {
     ) {
         await checkAuthentication(authPrincipal);
         const userId = authPrincipal.getDetails().userId;
-        const products = await this.productsRepository.getAll(userId.toString());
+        const products = await this.productsRepository.getAllByUserID(userId.toString());
         res.status(200).json({products});
     }
 }

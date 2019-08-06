@@ -10,6 +10,7 @@ export class MongoDBBasedProductsRepository implements ProductsRepository {
     constructor(
         private product: Product,
     ) {
+
     }
 
     async getOne(productId: string, shopName: string): Promise<Product | null> {
@@ -23,7 +24,7 @@ export class MongoDBBasedProductsRepository implements ProductsRepository {
             });
     }
 
-    async getAll(userId: string): Promise<Product[] | null> {
+    async getAllByUserID(userId: string): Promise<Product[] | null> {
         return await this.productModel.find({
             'usersDetails.userId': userId,
         })
@@ -40,8 +41,18 @@ export class MongoDBBasedProductsRepository implements ProductsRepository {
             });
     }
 
+    async getAll(): Promise<Product[] | null> {
+        return await this.productModel.find()
+            .then(res => {
+                return res
+            })
+            .catch(err => {
+                throw new Error(err);
+            });
+    }
+
     async store(product: Product): Promise<void> {
-        const {productId, category, currentPrice, imgSrc, name, shopName, usersDetails} = product;
+        const {productId, category, currentPrice, imgSrc, name, shopName, usersDetails, URL} = product;
         await this.productModel.create({
             usersDetails: usersDetails,
             category: category ? category : undefined,
@@ -50,6 +61,7 @@ export class MongoDBBasedProductsRepository implements ProductsRepository {
             name,
             productId,
             shopName,
+            URL,
         }).then(res => {
             return res;
         }).catch(e => {

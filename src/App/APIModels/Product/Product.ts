@@ -19,6 +19,13 @@ export class Product extends Typegoose {
     productId: string;
 
     @ApiModelProperty({
+        example: 'https://www.morele.net/statyw-hama-star-61-4161-torba-361702/' as any,
+        required: true,
+    })
+    @prop()
+    URL: string;
+
+    @ApiModelProperty({
         example: 'x-kom' as any,
         required: true,
     })

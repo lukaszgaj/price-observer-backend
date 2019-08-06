@@ -55,7 +55,8 @@ export class UrlController {
             return;
         }
         const html = await rp(normalizedBody.path);
-        const productData = this.moreleParser.getProductData(html);
+        const productData: any = this.moreleParser.getProductData(html);
+        productData.URL = normalizedBody.path;
         res.status(200).json(productData);
     }
 }

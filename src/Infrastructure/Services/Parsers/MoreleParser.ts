@@ -37,7 +37,6 @@ export class MoreleParser implements Parser {
 
     getProductData(html: string): Parser.ProductData {
         this.html = html;
-        console.log('img', this.getImgSrc());
         return {
             category: this.getCategory(),
             currentPrice: this.getCurrentPrice(),
