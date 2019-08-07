@@ -124,7 +124,7 @@ export class UserController {
             await this.usersRepository.update(user);
             const mailOptions = getResetPasswordEmailOptions('Alert Cenowy', senderMailAddress, user, newPassw);
             await sendEmail(mailOptions);
-            res.status(409).json({message: 'PASSWORD_CHANGED'});
+            res.status(200).json({message: 'PASSWORD_CHANGED_SUCCESSFULLY'});
         } else {
             res.status(500).json('CANNOT_FIND_SENDER_EMAIL_ADDRESS');
             return;

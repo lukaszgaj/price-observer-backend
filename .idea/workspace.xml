@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1cfeb8a0-42d1-4349-8758-9940bcf0e246" name="Default Changelist" comment="Initalize, create API for authentication user over tutorial, //TODO use TYPESCRIPT">
-      <change afterPath="$PROJECT_DIR$/src/App/APIModels/User/ResetPasswordRequest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/APIModels/User/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/APIModels/User/User.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App/Controllers/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controllers/UserController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Auth/UserDetails.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Auth/UserDetails.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -58,8 +54,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App/Controllers/UserController.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="148" column="26" lean-forward="true" selection-start-line="148" selection-start-column="26" selection-end-line="148" selection-end-column="26" />
+            <state relative-caret-position="194">
+              <caret line="125" column="41" lean-forward="true" selection-start-line="125" selection-start-column="41" selection-end-line="125" selection-end-column="41" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -395,7 +391,7 @@
       <workItem from="1564860530025" duration="7730000" />
       <workItem from="1564915090001" duration="12852000" />
       <workItem from="1564991143430" duration="15742000" />
-      <workItem from="1565159104602" duration="20705000" />
+      <workItem from="1565159104602" duration="22772000" />
     </task>
     <task id="LOCAL-00001" summary="Initalize, create API for authentication user over tutorial, //TODO use TYPESCRIPT">
       <created>1558733496492</created>
@@ -408,7 +404,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185484000" />
+    <option name="totallyTimeSpent" value="187551000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -423,14 +419,14 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18314321" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18314321" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.36959553" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.36959553" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.22315203" />
@@ -545,6 +541,30 @@
           <line>146</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
+          <line>153</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
+          <line>155</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
+          <line>156</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
+          <line>157</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -943,8 +963,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Controllers/UserController.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="148" column="26" lean-forward="true" selection-start-line="148" selection-start-column="26" selection-end-line="148" selection-end-column="26" />
+        <state relative-caret-position="194">
+          <caret line="125" column="41" lean-forward="true" selection-start-line="125" selection-start-column="41" selection-end-line="125" selection-end-column="41" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
