@@ -35,6 +35,32 @@ export class MongoDBBasedUsersRepository implements UsersRepository {
             });
     }
 
+    async getUserById(id: string): Promise<User | null> {
+        return await this.userModel.findById(id)
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                throw new Error(err);
+            });
+    }
+
+    async update(user: User): Promise<User | null> {
+        return await this.userModel.findOneAndUpdate(
+            {
+                _id: user._id
+            },
+            user,
+            {upsert: false},
+        )
+            .then(res => {
+                return res;
+            })
+            .catch(err => {
+                throw new Error(err);
+            });
+    }
+
     async store(user: User): Promise<void> {
         await this.userModel.create({
             email: user.email,

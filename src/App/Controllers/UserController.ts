@@ -7,6 +7,7 @@ import {UsersRepository} from '../../Domain/Repositories/UsersRepository';
 import {RegisteredUser} from '../APIModels/RegisteredUser/RegisteredUser';
 import {generateToken} from '../Utils/generateToken';
 import {User} from '../APIModels/User/User';
+import {getResetPasswordEmailOptions, sendEmail} from '../../Infrastructure/Services/MonitorProducts';
 
 const path = '/user';
 
@@ -92,5 +93,38 @@ export class UserController {
         }
         await this.usersRepository.store(normalizedBody);
         res.status(200).json({message: 'STORED_SUCCESSFULLY'});
+    }
+
+    @httpPost('/reset-password')
+    async resetPassword(
+        @request() req: express.Request,
+        @response() res: express.Response,
+    ) {
+        const normalizedBody = plainToClass(User, req.body);
+        if (!normalizedBody.email) {
+            res.status(400).json({message: 'PLEASE_PROVIDE_VALID_DATA'});
+            return;
+        }
+
+        const user = await this.usersRepository.getUserByEmail(normalizedBody.email);
+
+        if (!user) {
+            res.status(409).json({message: 'USER_WITH_THIS_EMAIL_DOES_NOT_EXIST'});
+            return;
+        }
+
+        const newPassw = Math.random().toString(36).substr(2, 10);
+        user.password = newPassw;
+
+        const senderMailAddress = process.env.GMAIL_ADDRESS;
+        if (senderMailAddress) {
+            await this.usersRepository.update(user);
+            const mailOptions = getResetPasswordEmailOptions('Alert Cenowy', senderMailAddress, user, newPassw);
+            await sendEmail(mailOptions);
+            res.status(409).json({message: 'PASSWORD_CHANGED'});
+        } else {
+            res.status(500).json('CANNOT_FIND_SENDER_EMAIL_ADDRESS');
+            return;
+        }
     }
 }
