@@ -12,7 +12,8 @@ import './config/controllers';
 import {initializeContainer} from './src/config/inversify.config';
 import {JWTBasedAuthProvider} from './src/Infrastructure/Auth/JWTBasedAuthProvider';
 import {ProductsRepository} from './src/Domain/Repositories/ProductsRepository';
-import monitorProducts from './src/Infrastructure/Services/MonitorProducts';
+import {monitorProducts} from './src/Infrastructure/Services/MonitorProducts';
+import {Product} from './src/App/APIModels/Product/Product';
 
 if (!process.env.CONNECTION_URL) {
     throw new Error('Cannot find CONNECTION_URL');
@@ -55,9 +56,10 @@ expressApp.use(swagger.express({
 }));
 
 setInterval(() => {
-    const productsRepository = container.get(ProductsRepository);
-    productsRepository.getAll().then((products: any) => monitorProducts(products));
-}, 5000);
+   const productsRepository = container.get(ProductsRepository);
+    productsRepository.getAll()
+        .then((products: Product[]| null) => monitorProducts(products, productsRepository));
+}, 1200000000);
 
 expressApp.use(express.urlencoded({extended: false}));
 expressApp.use(express.json());
