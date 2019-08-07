@@ -7,7 +7,7 @@ import * as nodemailer from 'nodemailer';
 
 export const monitorProducts = async (productsList: Product[] | null, productsRepository: ProductsRepository) => {
 
-    if (productsList && productsList.length> 100)
+    if (productsList)
         await productsList.forEach(async (productFromDB: Product) => {
             let html = await rp(productFromDB.URL.toString());
             if (productFromDB.shopName === 'morele') {
@@ -20,7 +20,7 @@ export const monitorProducts = async (productsList: Product[] | null, productsRe
                     if (user.expectedPrice!.count >= currentProductPrice.count)
                         console.log(`the price is smaller! send email to user ${user.userId}`);
                     else {
-
+                        0
                         console.log('price is not smaller :<');
                     }
                 })
@@ -28,13 +28,13 @@ export const monitorProducts = async (productsList: Product[] | null, productsRe
         });
 };
 
-export const sendEmail = async (userEmail: string) => {
+export const sendEmail = async (mailOptions: nodemailer.SendMailOptions) => {
     const gmailAddress = process.env.GMAIL_ADDRESS;
     //encoded password??
     const password = process.env.GMAIL_PASSW;
 
     if (password && gmailAddress) {
-         const transporter: nodemailer.Transporter = nodemailer.createTransport( {
+        const transporter: nodemailer.Transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
                 user: gmailAddress,
@@ -42,13 +42,6 @@ export const sendEmail = async (userEmail: string) => {
             }
         });
 
-        const mailOptions: nodemailer.SendMailOptions = {
-            from: `Alert cenowy ✔ <${gmailAddress}>`, // sender address
-            to: userEmail, // list of receivers
-            subject: "Helloł !✔", // Subject line
-            text: "Helloł world ✔", // plaintext body
-            html: "<b>CZEŚĆ !!! ✔</b>" // html body
-        };
 
         await transporter.sendMail(mailOptions, function (error: any, response: any) {
             if (error) {
@@ -60,6 +53,34 @@ export const sendEmail = async (userEmail: string) => {
         });
     } else {
         throw new Error('Cannot find email address and password');
+    }
+};
+
+export const getResetPasswordEmailOptions = (senderName: string, senderEmailAddress: string, receiverUserName: string, receiverEmailAddress: string, newPassword: string): nodemailer.SendMailOptions => {
+
+    const html = `<div>
+                    <h2 style='padding-top: 20px; padding-bottom: 20px; color: #DA7144; font-size: 19px;'><strong>ALERT CENOWY</strong></h2>
+                    <div style='color: #384049;'>
+                      <h3 style='padding-bottom: 15px'>RESETOWANIE HASŁA</h3>
+                      <div style='padding-bottom: 10px; text-transform: capitalize;'>
+                        Witaj ${receiverUserName}
+                      </div>
+                      <div>
+                        Twoje nowe hasło to: <strong>${newPassword}</strong>.<br/>
+                        Po zalogowaniu do serwisu należy bezzwłocznie zmienić hasło.
+                      </div>
+                      <div style='padding-top: 30px; font-size: 11px'>
+                        Wiadomość została wygenerowana automatyczne i nie należy na nią odpowiadać.
+                      </div>
+                    </div>
+                  </div>`;
+
+    return {
+        from: `${senderName} <${senderEmailAddress}>`,
+        to: receiverEmailAddress,
+        subject: 'Resetowanie hasła',
+        text: 'To jest text wiadom',
+        html: html,
     }
 };
 
