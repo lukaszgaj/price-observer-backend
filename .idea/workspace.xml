@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1cfeb8a0-42d1-4349-8758-9940bcf0e246" name="Default Changelist" comment="Initalize, create API for authentication user over tutorial, //TODO use TYPESCRIPT">
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Services/EmailSender.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Services/EmailSender/getPriceNotificationEmailOptions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Services/EmailSender/getResetPasswordEmailOptions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Services/EmailSender/sendEmail.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Services/getPriceNotificationEmailOptions.ts/ProductsObserver.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controllers/UrlController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controllers/UrlController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controllers/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controllers/UserController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/inversify.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/inversify.config.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,69 +24,75 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/Controllers/ProductsController.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="108" column="19" lean-forward="true" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/Controllers/DefaultController.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App/Controllers/UrlController.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="43" column="46" lean-forward="true" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
+            <state relative-caret-position="525">
+              <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/Parsers/MoreleParser.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/Parsers/Parser.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Domain/Repositories/UsersRepository.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/getPriceNotificationEmailOptions.ts/ProductsObserver.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/config/inversify.config.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/App/Controllers/UserController.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="76" column="10" lean-forward="true" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1827">
-              <caret line="87" column="57" lean-forward="true" selection-start-line="87" selection-start-column="57" selection-end-line="87" selection-end-column="57" />
-              <folding>
-                <element signature="e#0#60#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Infrastructure/Repositories/MongoDBBasedUsersRepository.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-478">
+            <state relative-caret-position="357">
               <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
@@ -88,36 +102,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Auth/Principal.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Domain/Auth/UserDetails.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/APIModels/Url/Url.ts">
+        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/EmailSender/getPriceNotificationEmailOptions.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret selection-end-line="16" />
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
+                <element signature="e#0#54#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/EmailSender/sendEmail.ts">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/EmailSender.ts">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -167,8 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/config/database.js" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/app/api/controllers/users.js" />
         <option value="$PROJECT_DIR$/resources/swagger/index.html" />
@@ -198,13 +198,11 @@
         <option value="$PROJECT_DIR$/src/App/APIModels/Url/Url.ts" />
         <option value="$PROJECT_DIR$/config/controllers.ts" />
         <option value="$PROJECT_DIR$/src/Infrastructure/Services/MoreleParser.ts" />
-        <option value="$PROJECT_DIR$/src/config/inversify.config.ts" />
         <option value="$PROJECT_DIR$/src/App/APIModels/Product/Price.ts" />
         <option value="$PROJECT_DIR$/src/Infrastructure/Services/Parsers/Parser.ts" />
         <option value="$PROJECT_DIR$/src/App/APIModels/Product/UserData.ts" />
         <option value="$PROJECT_DIR$/src/App/APIModels/Product/AddProductRequest.ts" />
         <option value="$PROJECT_DIR$/src/App/APIModels/Product/UserDetails.ts" />
-        <option value="$PROJECT_DIR$/src/App/Controllers/UrlController.ts" />
         <option value="$PROJECT_DIR$/src/App/Controllers/ProductsController.ts" />
         <option value="$PROJECT_DIR$/src/Infrastructure/Services/Parsers/MoreleParser.ts" />
         <option value="$PROJECT_DIR$/src/Domain/Repositories/ProductsRepository.ts" />
@@ -217,7 +215,11 @@
         <option value="$PROJECT_DIR$/src/App/APIModels/User/ResetPasswordRequest.ts" />
         <option value="$PROJECT_DIR$/src/Domain/Auth/UserDetails.ts" />
         <option value="$PROJECT_DIR$/src/App/Controllers/UserController.ts" />
+        <option value="$PROJECT_DIR$/src/App/Controllers/UrlController.ts" />
         <option value="$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts" />
+        <option value="$PROJECT_DIR$/src/Infrastructure/Services/getPriceNotificationEmailOptions.ts/MonitorProducts.ts" />
+        <option value="$PROJECT_DIR$/src/Infrastructure/Services/getPriceNotificationEmailOptions.ts/ProductsObserver.ts" />
+        <option value="$PROJECT_DIR$/src/config/inversify.config.ts" />
       </list>
     </option>
   </component>
@@ -225,8 +227,8 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1490" />
-    <option name="y" value="5" />
+    <option name="x" value="1875" />
+    <option name="y" value="-78" />
     <option name="width" value="1598" />
     <option name="height" value="867" />
   </component>
@@ -323,6 +325,50 @@
               <item name="Domain" type="462c0819:PsiDirectoryNode" />
               <item name="Repositories" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="price-observer-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="price-observer-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Infrastructure" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="price-observer-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="price-observer-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="price-observer-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="price-observer-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="Services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="price-observer-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="price-observer-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="Services" type="462c0819:PsiDirectoryNode" />
+              <item name="EmailSender" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="price-observer-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="price-observer-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="Services" type="462c0819:PsiDirectoryNode" />
+              <item name="getPriceNotificationEmailOptions.ts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="price-observer-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="price-observer-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="Services" type="462c0819:PsiDirectoryNode" />
+              <item name="Parsers" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -344,12 +390,17 @@
     <property name="ts.external.directory.path" value="D:\code\price-observer-backend\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
+    <key name="es6.move.members.recent.items">
+      <recent name="D:\code\price-observer-backend\src\Infrastructure\Services\EmailSender\getPriceNotificationEmailOptions.ts" />
+      <recent name="D:\code\price-observer-backend\src\Infrastructure\Services\getResetPasswordEmailOptions.ts" />
+      <recent name="D:\code\price-observer-backend\src\Infrastructure\Services\sendEmail.ts" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\code\price-observer-backend\src\Infrastructure\Services\EmailSender" />
+      <recent name="D:\code\price-observer-backend\src\Infrastructure\Services\getPriceNotificationEmailOptions.ts" />
       <recent name="C:\code\price-observer-backend\src\Infrastructure\Services\Parsers" />
       <recent name="C:\code\price-observer-backend\src\Infrastructure" />
       <recent name="C:\code\price-observer-backend\src\App\Controllers" />
-      <recent name="C:\code\price-observer-backend\src\App\APIModels" />
-      <recent name="C:\code\price-observer-backend\src\App\Utils\CustomModels" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -403,7 +454,7 @@
       <workItem from="1564860530025" duration="7730000" />
       <workItem from="1564915090001" duration="12852000" />
       <workItem from="1564991143430" duration="15742000" />
-      <workItem from="1565159104602" duration="25070000" />
+      <workItem from="1565159104602" duration="29544000" />
     </task>
     <task id="LOCAL-00001" summary="Initalize, create API for authentication user over tutorial, //TODO use TYPESCRIPT">
       <created>1558733496492</created>
@@ -416,7 +467,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189849000" />
+    <option name="totallyTimeSpent" value="194323000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -504,79 +555,10 @@
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts</url>
-          <line>48</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts</url>
-          <line>62</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts</url>
-          <line>66</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts</url>
-          <line>80</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts</url>
-          <line>10</line>
+          <url>file://$PROJECT_DIR$/src/Infrastructure/Services/getPriceNotificationEmailOptions.ts/ProductsObserver.ts</url>
+          <line>11</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
-          <line>140</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
-          <line>149</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
-          <line>148</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
-          <line>146</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
-          <line>153</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
-          <line>155</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
-          <line>156</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App/Controllers/UserController.ts</url>
-          <line>157</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -590,22 +572,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/jsonwebtoken/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="139" column="22" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/APIModels/Product/asd.ts" />
-    <entry file="file://$PROJECT_DIR$/node_modules/swagger-express-ts/i-api-operation-args.base.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Controllers/Product/AddSingleProductController.ts" />
     <entry file="file://$PROJECT_DIR$/src/App/Controllers/Product/GetAllProductsController.ts" />
     <entry file="file://$PROJECT_DIR$/src/App/Controllers/User/LoginController.ts" />
     <entry file="file://$PROJECT_DIR$/src/App/Controllers/User/RegisterController.ts" />
@@ -733,39 +699,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App/APIModels/Product/AddProductRequest.ts" />
-    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/Parsers/Parser.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/APIModels/Product/Price.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/Parsers/MoreleParser.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/inversify.config.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -808,13 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/Repositories/UsersRepository.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -876,16 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Controllers/UrlController.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="43" column="46" lean-forward="true" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/APIModels/User/ResetPasswordRequest.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -923,32 +845,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Repositories/MongoDBBasedUsersRepository.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-478">
-          <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Controllers/ProductsController.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="108" column="19" lean-forward="true" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/MonitorProducts.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1827">
-          <caret line="87" column="57" lean-forward="true" selection-start-line="87" selection-start-column="57" selection-end-line="87" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -965,10 +867,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Controllers/UserController.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="76" column="10" lean-forward="true" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+        <state relative-caret-position="371">
+          <caret line="71" column="31" lean-forward="true" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Controllers/UrlController.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/EmailSender/getResetPasswordEmailOptions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/EmailSender/sendEmail.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/EmailSender.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/inversify.config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/EmailSender/getPriceNotificationEmailOptions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/Parsers/Parser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/Parsers/MoreleParser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/getPriceNotificationEmailOptions.ts/ProductsObserver.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Domain/Repositories/UsersRepository.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Repositories/MongoDBBasedUsersRepository.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>

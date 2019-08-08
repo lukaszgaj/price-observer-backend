@@ -7,6 +7,7 @@ import {UsersRepository} from '../Domain/Repositories/UsersRepository';
 import {MongoDBBasedProductsRepository} from '../Infrastructure/Repositories/MongoDBBasedProductsRepository';
 import {MongoDBBasedUsersRepository} from '../Infrastructure/Repositories/MongoDBBasedUsersRepository';
 import {MoreleParser} from '../Infrastructure/Services/Parsers/MoreleParser';
+import {ProductsObserver} from '../Infrastructure/Services/getPriceNotificationEmailOptions.ts/ProductsObserver';
 
 export function initializeContainer() {
     const container = new Container();
@@ -22,5 +23,6 @@ export function initializeContainer() {
 
 // Services
     container.bind(MoreleParser).toSelf();
+    container.bind(ProductsObserver).toSelf();
     return container;
 }

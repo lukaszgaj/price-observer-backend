@@ -8,6 +8,7 @@ import {Principal} from '../../Infrastructure/Auth/Principal';
 import {MoreleParser} from '../../Infrastructure/Services/Parsers/MoreleParser';
 import {Url} from '../APIModels/Url/Url';
 import {checkAuthentication} from '../Utils/checkAuthentication';
+import {Parser} from '../../Infrastructure/Services/Parsers/Parser';
 
 const path = '/url';
 
@@ -55,8 +56,20 @@ export class UrlController {
             return;
         }
         const html = await rp(normalizedBody.path);
-        const productData: any = this.moreleParser.getProductData(html);
-        productData.URL = normalizedBody.path;
-        res.status(200).json(productData);
+        const productData: Parser.ProductData = this.moreleParser.getProductData(html);
+
+        if (!productData ||
+            !productData.currentPrice ||
+            !productData.category ||
+            !productData.imgSrc ||
+            !productData.name ||
+            !productData.productId ||
+            !productData.shopName) {
+            res.status(500).json({message: 'CANNOT_PARSE_PRODUCT'});
+            return;
+        }
+        const responseBody: any = {...productData};
+        responseBody.URL = normalizedBody.path;
+        res.status(200).json(responseBody);
     }
 }
