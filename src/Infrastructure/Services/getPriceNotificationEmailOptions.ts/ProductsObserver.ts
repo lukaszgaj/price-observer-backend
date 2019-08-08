@@ -1,32 +1,28 @@
-import {Product} from '../../../App/APIModels/Product/Product';
-import rp from 'request-promise';
-import {MoreleParser} from '../Parsers/MoreleParser';
-import {UserDetails} from '../../../App/APIModels/Product/UserDetails';
-import {ProductsRepository} from '../../../Domain/Repositories/ProductsRepository';
-import * as nodemailer from 'nodemailer';
-import {UsersRepository} from '../../../Domain/Repositories/UsersRepository';
-import {User} from '../../../App/APIModels/User/User';
-import {sendEmail} from '../EmailSender/sendEmail';
-import {getPriceNotificationMailOptions} from '../EmailSender/getPriceNotificationEmailOptions';
-import {Parser} from '../Parsers/Parser';
 import Price = Parser.Price;
 import {injectable} from 'inversify';
+import * as nodemailer from 'nodemailer';
+import rp from 'request-promise';
+import {Product} from '../../../App/APIModels/Product/Product';
+import {UserDetails} from '../../../App/APIModels/Product/UserDetails';
+import {User} from '../../../App/APIModels/User/User';
+import {ProductsRepository} from '../../../Domain/Repositories/ProductsRepository';
+import {UsersRepository} from '../../../Domain/Repositories/UsersRepository';
+import {getPriceNotificationMailOptions} from '../EmailSender/getPriceNotificationEmailOptions';
+import {sendEmail} from '../EmailSender/sendEmail';
+import {MoreleParser} from '../Parsers/MoreleParser';
+import {Parser} from '../Parsers/Parser';
 
 @injectable()
 export class ProductsObserver {
-
-    private productsRepository: ProductsRepository;
-    private usersRepository: UsersRepository;
-
-    constructor(productsRepository: ProductsRepository, usersRepository: UsersRepository) {
-        productsRepository;
-        usersRepository;
-    }
+    constructor(
+        private productsRepository: ProductsRepository,
+        private usersRepository: UsersRepository,
+    ) {}
 
     monitorProducts = async () => {
         const productsList = await this.productsRepository.getAll();
 
-        if (productsList)
+        if (productsList) {
             await productsList.forEach(async (productFromDB: Product) => {
                 if (productFromDB.shopName === 'morele') {
                     const currentProductPrice: Price | undefined = await this.getCurrentProductPrice(productFromDB);
@@ -36,7 +32,7 @@ export class ProductsObserver {
                         return;
                     }
 
-                    if (productFromDB.currentPrice.count != currentProductPrice.count) {
+                    if (productFromDB.currentPrice.count !== currentProductPrice.count) {
                         productFromDB.currentPrice.count = currentProductPrice.count;
                         productFromDB.currentPrice.currency = currentProductPrice.currency;
                         await this.productsRepository.updateOne(productFromDB.productId, productFromDB.shopName, productFromDB);
@@ -51,7 +47,7 @@ export class ProductsObserver {
                                 return;
                             }
 
-                            if(!process.env.GMAIL_ADDRESS){
+                            if (!process.env.GMAIL_ADDRESS) {
                                 throw Error('SENDER_EMAIL_ADDRESS_NOT_FOUND');
                                 return;
                             }
@@ -60,16 +56,17 @@ export class ProductsObserver {
                             await sendEmail(mailOptions);
                             await this.removeProduct(user._id, productFromDB);
                         }
-                    })
+                    });
 
                 }
             });
-    };
+        }
+    }
 
     getCurrentProductPrice = async (product: Product): Promise<Price | undefined> => {
         const html = await rp(product.URL.toString());
         return new MoreleParser().getProductData(html).currentPrice;
-    };
+    }
 
     removeProduct = async (userId: string, product: Product) => {
         if (product && product.usersDetails.length > 1) {
@@ -80,5 +77,5 @@ export class ProductsObserver {
 
         await this.productsRepository.remove(product);
         return;
-    };
+    }
 }
