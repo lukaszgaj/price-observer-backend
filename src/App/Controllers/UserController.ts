@@ -12,6 +12,7 @@ import {Principal} from '../../Infrastructure/Auth/Principal';
 import {checkAuthentication} from '../Utils/checkAuthentication';
 import {ResetPasswordRequest} from '../APIModels/User/ResetPasswordRequest';
 import {sendEmail} from '../../Infrastructure/Services/EmailSender/sendEmail';
+import {EmailSender} from '../../Infrastructure/Services/EmailSender';
 
 const path = '/user';
 
@@ -23,6 +24,7 @@ const path = '/user';
 export class UserController {
     constructor(
         private usersRepository: UsersRepository,
+        private emailSender: EmailSender,
     ) {
     }
 
@@ -118,19 +120,16 @@ export class UserController {
         }
 
         const newPassw = Math.random().toString(36).substr(2, 10);
+        user.password = hashSync(newPassw, 10);
 
-        const senderMailAddress = process.env.GMAIL_ADDRESS;
-        if (senderMailAddress) {
-            user.password = hashSync(newPassw, 10);
-            await this.usersRepository.update(user);
-            const mailOptions = getResetPasswordEmailOptions('Alert Cenowy', senderMailAddress, user, newPassw);
-            await sendEmail(mailOptions);
+        if (await this.usersRepository.update(user)) {
+            this.emailSender.sendResetPasswordEmail(user, newPassw);
             res.status(200).json({message: 'PASSWORD_CHANGED_SUCCESSFULLY'});
-        } else {
-            res.status(500).json('CANNOT_FIND_SENDER_EMAIL_ADDRESS');
             return;
         }
-    }
+
+        res.status(500).json({message: 'UNKNOWN_ERROR'});
+    };
 
     @httpPost('/change-password')
     async changePassword(
@@ -152,13 +151,16 @@ export class UserController {
             return;
         }
 
-        if (compareSync(normalizedBody.currentPassword, userFromDB.password)) {
-            userFromDB.password = hashSync(normalizedBody.newPassword, 10);
-            if (await this.usersRepository.update(userFromDB))
-                res.status(200).json({message: 'PASSWORD_CHANGED_SUCCESSFULLY'});
-            else  res.status(500).json({message: 'DATABASE_ERROR'});
-        } else {
+        if (!compareSync(normalizedBody.currentPassword, userFromDB.password)) {
             res.status(400).json({message: 'INVALID_PASSWORD'});
+            return;
         }
+
+        if (await this.usersRepository.update(userFromDB)) {
+            res.status(200).json({message: 'PASSWORD_CHANGED_SUCCESSFULLY'});
+            return;
+        }
+
+        res.status(500).json({message: 'DATABASE_ERROR'});
     }
 }

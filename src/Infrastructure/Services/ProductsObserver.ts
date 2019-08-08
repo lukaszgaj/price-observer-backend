@@ -1,25 +1,28 @@
 import Price = Parser.Price;
 import {injectable} from 'inversify';
-import * as nodemailer from 'nodemailer';
 import rp from 'request-promise';
-import {Product} from '../../../App/APIModels/Product/Product';
-import {UserDetails} from '../../../App/APIModels/Product/UserDetails';
-import {User} from '../../../App/APIModels/User/User';
-import {ProductsRepository} from '../../../Domain/Repositories/ProductsRepository';
-import {UsersRepository} from '../../../Domain/Repositories/UsersRepository';
-import {getPriceNotificationMailOptions} from '../EmailSender/getPriceNotificationEmailOptions';
-import {sendEmail} from '../EmailSender/sendEmail';
-import {MoreleParser} from '../Parsers/MoreleParser';
-import {Parser} from '../Parsers/Parser';
+import {Product} from '../../App/APIModels/Product/Product';
+import {UserDetails} from '../../App/APIModels/Product/UserDetails';
+import {User} from '../../App/APIModels/User/User';
+import {ProductsRepository} from '../../Domain/Repositories/ProductsRepository';
+import {UsersRepository} from '../../Domain/Repositories/UsersRepository';
+import {MoreleParser} from './Parsers/MoreleParser';
+import {Parser} from './Parsers/Parser';
+import {EmailSender} from './EmailSender';
 
 @injectable()
 export class ProductsObserver {
     constructor(
         private productsRepository: ProductsRepository,
         private usersRepository: UsersRepository,
+        private emailSender: EmailSender,
     ) {}
 
-    monitorProducts = async () => {
+    start = () => {
+      setInterval(() => this.monitorProducts(), 10000);
+    };
+
+    private monitorProducts = async () => {
         const productsList = await this.productsRepository.getAll();
 
         if (productsList) {
@@ -52,8 +55,7 @@ export class ProductsObserver {
                                 return;
                             }
 
-                            const mailOptions: nodemailer.SendMailOptions = getPriceNotificationMailOptions('Alert cenowy', process.env.GMAIL_ADDRESS, user, productFromDB);
-                            await sendEmail(mailOptions);
+                            await this.emailSender.sendProductPriceNotificationEmail(user, productFromDB);
                             await this.removeProduct(user._id, productFromDB);
                         }
                     });
@@ -61,14 +63,14 @@ export class ProductsObserver {
                 }
             });
         }
-    }
+    };
 
-    getCurrentProductPrice = async (product: Product): Promise<Price | undefined> => {
+    private getCurrentProductPrice = async (product: Product): Promise<Price | undefined> => {
         const html = await rp(product.URL.toString());
         return new MoreleParser().getProductData(html).currentPrice;
-    }
+    };
 
-    removeProduct = async (userId: string, product: Product) => {
+    private removeProduct = async (userId: string, product: Product) => {
         if (product && product.usersDetails.length > 1) {
             product.usersDetails = product.usersDetails.filter((user: UserDetails) => user.userId !== userId);
             await this.productsRepository.updateOne(product.productId, product.shopName, product);
