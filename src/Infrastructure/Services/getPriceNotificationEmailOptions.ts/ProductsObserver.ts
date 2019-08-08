@@ -58,7 +58,7 @@ export class ProductsObserver {
 
                             const mailOptions: nodemailer.SendMailOptions = getPriceNotificationMailOptions('Alert cenowy', process.env.GMAIL_ADDRESS, user, productFromDB);
                             await sendEmail(mailOptions);
-                            await this.removeUserDetailsFromProduct(user._id, productFromDB, this.productsRepository);
+                            await this.removeProduct(user._id, productFromDB);
                         }
                     })
 
@@ -71,17 +71,14 @@ export class ProductsObserver {
         return new MoreleParser().getProductData(html).currentPrice;
     };
 
-
-    //const
-    removeUserDetailsFromProduct = async (userId: string, product: Product, productsRepository: ProductsRepository) => {
-
+    removeProduct = async (userId: string, product: Product) => {
         if (product && product.usersDetails.length > 1) {
             product.usersDetails = product.usersDetails.filter((user: UserDetails) => user.userId !== userId);
-            await productsRepository.updateOne(product.productId, product.shopName, product);
+            await this.productsRepository.updateOne(product.productId, product.shopName, product);
             return;
         }
 
-        await productsRepository.remove(product);
+        await this.productsRepository.remove(product);
         return;
     };
 }

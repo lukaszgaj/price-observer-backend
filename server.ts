@@ -11,6 +11,7 @@ import {SwaggerDefinitionConstant} from 'swagger-express-ts';
 import './config/controllers';
 import {initializeContainer} from './src/config/inversify.config';
 import {JWTBasedAuthProvider} from './src/Infrastructure/Auth/JWTBasedAuthProvider';
+import {ProductsObserver} from './src/Infrastructure/Services/getPriceNotificationEmailOptions.ts/ProductsObserver';
 
 if (!process.env.CONNECTION_URL) {
     throw new Error('Cannot find CONNECTION_URL');
@@ -55,13 +56,10 @@ expressApp.use(swagger.express({
 //const mailOptions = getResetPasswordEmailOptions('Alert Cenowy', process.env.GMAIL_ADDRESS!, '', '', 'asdad');
 //sendEmail(mailOptions);
 
-//setInterval(() => {
-//   const productsRepository = container.get(ProductsRepository);
-//    const usersRepository = container.get(UsersRepository);
-//    productsRepository.getAll()
-//        .then((products: Product[]| null) => monitorProducts(products, productsRepository, usersRepository));
-//}, 600000);
-//
+setInterval(async () => {
+    await container.get(ProductsObserver).monitorProducts();
+}, 5000);
+
 expressApp.use(express.urlencoded({extended: false}));
 
 expressApp.use(express.json());
