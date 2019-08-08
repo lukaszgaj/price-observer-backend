@@ -126,6 +126,7 @@ export class ProductsController {
         const index = productFromDatabase.usersDetails.findIndex((user: UserDetails) => user.userId === currentUserDetails.userId);
         currentUserDetails.addedAt = productFromDatabase.usersDetails[index].addedAt;
         productFromDatabase.usersDetails[index] = currentUserDetails;
+
         await this.productsRepository.updateOne(normalizedBody.productId, normalizedBody.shopName, productFromDatabase);
         res.status(200).json({message: 'PRODUCT_UPDATED_SUCCESSFULLY'});
     }

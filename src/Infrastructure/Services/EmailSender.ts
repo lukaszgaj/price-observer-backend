@@ -5,12 +5,19 @@ import * as nodemailer from 'nodemailer';
 
 @injectable()
 export class EmailSender {
+    private senderName: string;
+    private senderEmailAddress: string;
+    private senderEmailPassword: string;
 
-    constructor(
-        private senderName: string,
-        private senderEmailAddress: string,
-        private senderEmailPassword: string,
-    ) {
+    constructor() {
+        if (!process.env.GMAIL_ADDRESS
+            || !process.env.GMAIL_ADDRESS
+            || !process.env.GMAIL_PASSW)
+            throw Error('CANNOT_FIND_SENDER_DATA');
+
+        this.senderEmailPassword = process.env.GMAIL_PASSW;
+        this.senderName = process.env.GMAIL_ADDRESS;
+        this.senderEmailAddress = process.env.GMAIL_ADDRESS;
     }
 
     sendProductPriceNotificationEmail = (receiver: User, product: Product) => {
@@ -30,11 +37,9 @@ export class EmailSender {
             }
         });
 
-        await transporter.sendMail(mailOptions, function (error: any, response: any) {
+        await transporter.sendMail(mailOptions, function (error: any) {
             if (error) {
-                console.log(error);
-            } else {
-                console.log("Message sent: " + response.message);
+                throw Error('CANNOT_SEND_EMAIL');
             }
             transporter.close();
         });

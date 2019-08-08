@@ -7,11 +7,9 @@ import {UsersRepository} from '../../Domain/Repositories/UsersRepository';
 import {RegisteredUser} from '../APIModels/RegisteredUser/RegisteredUser';
 import {generateToken} from '../Utils/generateToken';
 import {User} from '../APIModels/User/User';
-import {getResetPasswordEmailOptions} from '../../Infrastructure/Services/EmailSender/getResetPasswordEmailOptions';
 import {Principal} from '../../Infrastructure/Auth/Principal';
 import {checkAuthentication} from '../Utils/checkAuthentication';
 import {ResetPasswordRequest} from '../APIModels/User/ResetPasswordRequest';
-import {sendEmail} from '../../Infrastructure/Services/EmailSender/sendEmail';
 import {EmailSender} from '../../Infrastructure/Services/EmailSender';
 
 const path = '/user';

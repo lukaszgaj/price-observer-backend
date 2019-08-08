@@ -19,7 +19,7 @@ export class ProductsObserver {
     ) {}
 
     start = () => {
-      setInterval(() => this.monitorProducts(), 10000);
+      setInterval(() => this.monitorProducts(), 600000);
     };
 
     private monitorProducts = async () => {
