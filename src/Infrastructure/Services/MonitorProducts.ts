@@ -85,7 +85,7 @@ export const getResetPasswordEmailOptions =
                       </div>
                       <div>
                         Twoje nowe hasło to: <strong>${newPassword}</strong>.<br/>
-                        Po zalogowaniu do serwisu należy bezzwłocznie zmienić hasło.
+                        Po zalogowaniu do serwisu należy zmienić hasło.
                       </div>
                       <div style='padding-top: 30px; font-size: 11px'>
                         Wiadomość została wygenerowana automatyczne i nie należy na nią odpowiadać.
