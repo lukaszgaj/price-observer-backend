@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5bd451d-9f33-4da8-a4c2-35a80826afb3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App/Controllers/ProductsController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controllers/ProductsController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Controllers/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controllers/UserController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Services/EmailSender.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Services/EmailSender.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/Services/ProductsObserver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Services/ProductsObserver.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App/Controllers/ProductsController.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2403">
-              <caret line="129" column="8" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
+            <state relative-caret-position="1059">
+              <caret line="70" column="77" selection-start-line="70" selection-start-column="43" selection-end-line="70" selection-end-column="77" />
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
               </folding>
@@ -45,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/ProductsObserver.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+            <state relative-caret-position="399">
+              <caret line="44" column="59" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
               <folding>
                 <element signature="n#Price#0" expanded="true" />
               </folding>
@@ -93,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="55" column="21" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+            <state relative-caret-position="150">
+              <caret line="55" column="19" lean-forward="true" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -233,10 +230,10 @@
         <option value="$PROJECT_DIR$/src/Infrastructure/Services/EmailSender/sendEmail.ts" />
         <option value="$PROJECT_DIR$/src/config/inversify.config.ts" />
         <option value="$PROJECT_DIR$/src/Infrastructure/Services/ProductsObserver/ProductsObserver.ts" />
-        <option value="$PROJECT_DIR$/server.ts" />
         <option value="$PROJECT_DIR$/src/App/Controllers/UserController.ts" />
         <option value="$PROJECT_DIR$/src/App/Controllers/ProductsController.ts" />
         <option value="$PROJECT_DIR$/src/Infrastructure/Services/EmailSender.ts" />
+        <option value="$PROJECT_DIR$/server.ts" />
         <option value="$PROJECT_DIR$/src/Infrastructure/Services/ProductsObserver.ts" />
       </list>
     </option>
@@ -245,10 +242,10 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1592" />
-    <option name="y" value="-103" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="1691" />
+    <option name="y" value="-27" />
+    <option name="width" value="1614" />
+    <option name="height" value="867" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -461,7 +458,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202910000" />
+    <option name="totallyTimeSpent" value="204690000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -483,7 +480,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.2831661" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.057971016" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.22315203" />
@@ -950,16 +947,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/inversify.config.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="41" lean-forward="true" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Controllers/UrlController.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-201">
@@ -970,30 +957,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Controllers/ProductsController.ts">
+    <entry file="file://$PROJECT_DIR$/src/config/inversify.config.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2403">
-          <caret line="129" column="8" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
+        <state relative-caret-position="567">
+          <caret line="27" column="41" lean-forward="true" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
-            <element signature="e#0#47#0" expanded="true" />
+            <element signature="e#0#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="55" column="21" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+        <state relative-caret-position="150">
+          <caret line="55" column="19" lean-forward="true" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Controllers/ProductsController.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1059">
+          <caret line="70" column="77" selection-start-line="70" selection-start-column="43" selection-end-line="70" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Infrastructure/Services/ProductsObserver.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        <state relative-caret-position="399">
+          <caret line="44" column="59" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
           <folding>
             <element signature="n#Price#0" expanded="true" />
           </folding>

@@ -42,7 +42,7 @@ export class ProductsObserver {
                     }
 
                     productFromDB.usersDetails.forEach(async (userInfo: UserDetails) => {
-                        if (userInfo.expectedPrice!.count <= currentProductPrice.count) {
+                        if (userInfo.expectedPrice!.count >= currentProductPrice.count) {
                             const user: User | null = await this.usersRepository.getUserById(userInfo.userId!);
 
                             if (!user) {
