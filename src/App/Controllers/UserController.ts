@@ -121,11 +121,12 @@ export class UserController {
         user.password = hashSync(newPassw, 10);
 
         if (await this.usersRepository.update(user)) {
-            this.emailSender.sendResetPasswordEmail(user, newPassw);
-            res.status(200).json({message: 'PASSWORD_CHANGED_SUCCESSFULLY'});
-            return;
+            if (await this.emailSender.sendResetPasswordEmail(user, newPassw)) {
+                res.status(200).json({message: 'PASSWORD_CHANGED_SUCCESSFULLY'});
+                return;
+            }
+            res.status(500).json({message: 'EMAIL_SENDER_ERROR'});
         }
-
         res.status(500).json({message: 'UNKNOWN_ERROR'});
     };
 

@@ -5,9 +5,9 @@ import * as nodemailer from 'nodemailer';
 
 @injectable()
 export class EmailSender {
-    private senderName: string;
-    private senderEmailAddress: string;
-    private senderEmailPassword: string;
+    private readonly senderName: string;
+    private readonly senderEmailAddress: string;
+    private readonly senderEmailPassword: string;
 
     constructor() {
         if (!process.env.GMAIL_ADDRESS
@@ -20,28 +20,34 @@ export class EmailSender {
         this.senderEmailAddress = process.env.GMAIL_ADDRESS;
     }
 
-    sendProductPriceNotificationEmail = (receiver: User, product: Product) => {
-        this.sendEmail(this.getPriceNotificationMailOptions(receiver, product));
+    sendProductPriceNotificationEmail = (receiver: User, product: Product): Promise<boolean> => {
+        return this.sendEmail(this.getPriceNotificationMailOptions(receiver, product))
+            .then(() => true)
+            .catch(() => false)
     };
 
-    sendResetPasswordEmail = (receiver: User, newPassword: string) => {
-        this.sendEmail(this.getResetPasswordEmailOptions(receiver, newPassword))
+    sendResetPasswordEmail = (receiver: User, newPassword: string): Promise<boolean> => {
+        return this.sendEmail(this.getResetPasswordEmailOptions(receiver, newPassword))
+            .then(() => true)
+            .catch(() => false)
     };
 
-    private sendEmail = async (mailOptions: nodemailer.SendMailOptions) => {
+    private sendEmail = (mailOptions: nodemailer.SendMailOptions) => {
         const transporter: nodemailer.Transporter = nodemailer.createTransport({
-            service: "Gmail",
+            service: 'Gmail',
             auth: {
                 user: this.senderEmailAddress,
                 pass: this.senderEmailPassword,
             }
         });
 
-        await transporter.sendMail(mailOptions, function (error: any) {
-            if (error) {
-                throw Error('CANNOT_SEND_EMAIL');
-            }
-            transporter.close();
+        return new Promise(function (fulfilled, reject) {
+            transporter.sendMail(mailOptions, (error: any) => {
+                transporter.close();
+                if (error)
+                    reject('CANNOT_SEND_EMAIL');
+                fulfilled('EMAIL_SEND_SUCCESSFULLY')
+            });
         });
     };
 
