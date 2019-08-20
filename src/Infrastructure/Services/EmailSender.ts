@@ -62,7 +62,7 @@ export class EmailSender {
                         Witaj ${receiver.name},
                       </div>
                       <div>
-                        twoje nowe hasło to: <strong>${newPassword}</strong>.<br/>
+                        Twoje nowe hasło to: <strong>${newPassword}</strong>.<br/>
                         Po zalogowaniu do serwisu należy zmienić hasło.
                       </div>
                       <div style='padding-top: 30px; font-size: 11px'>

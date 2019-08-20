@@ -56,7 +56,7 @@ export class ProductsObserver {
                             }
 
                             await this.emailSender.sendProductPriceNotificationEmail(user, productFromDB);
-                            await this.removeProduct(user._id, productFromDB);
+                            await this.removeProduct(userInfo.userId!, productFromDB);
                         }
                     });
 
@@ -76,7 +76,6 @@ export class ProductsObserver {
             await this.productsRepository.updateOne(product.productId, product.shopName, product);
             return;
         }
-
         await this.productsRepository.remove(product);
         return;
     }

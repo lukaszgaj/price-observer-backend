@@ -56,8 +56,13 @@ export class UserController {
             return;
         }
         if (compareSync(normalizedBody.password, user.password)) {
-            const token = generateToken(user._id, user.email, user.name);
-            res.status(200).json({token});
+            let token;
+            try {
+                token = generateToken(user._id, user.email, user.name);
+                res.status(200).json({token});
+            } catch (e) {
+                res.status(400).json({message: 'SOMETHING_WENT_WRONG'});
+            }
         } else {
             res.status(400).json({message: 'BAD_EMAIL_OR_PASSWORD'});
         }
