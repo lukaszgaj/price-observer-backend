@@ -31,7 +31,7 @@ export class ProductsObserver {
                     const currentProductPrice: Price | undefined = await this.getCurrentProductPrice(productFromDB);
 
                     if (!currentProductPrice) {
-                        throw Error('CANNOT_CHECK_CURRENT_PRODUCT_PRICE');
+                        //throw Error('CANNOT_CHECK_CURRENT_PRODUCT_PRICE');
                         return;
                     }
 
@@ -46,12 +46,12 @@ export class ProductsObserver {
                             const user: User | null = await this.usersRepository.getUserById(userInfo.userId!);
 
                             if (!user) {
-                                throw Error('USER_NOT_FOUND');
+                                //throw Error('USER_NOT_FOUND');
                                 return;
                             }
 
                             if (!process.env.GMAIL_ADDRESS) {
-                                throw Error('SENDER_EMAIL_ADDRESS_NOT_FOUND');
+                                //throw Error('SENDER_EMAIL_ADDRESS_NOT_FOUND');
                                 return;
                             }
 
