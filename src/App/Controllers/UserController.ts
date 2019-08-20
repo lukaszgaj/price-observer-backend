@@ -160,6 +160,7 @@ export class UserController {
             return;
         }
 
+        userFromDB.password = hashSync(normalizedBody.newPassword, 10);
         if (await this.usersRepository.update(userFromDB)) {
             res.status(200).json({message: 'PASSWORD_CHANGED_SUCCESSFULLY'});
             return;
