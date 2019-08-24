@@ -9,6 +9,7 @@ import {pre, prop, Typegoose} from 'typegoose';
         this.password = hashSync(this.password, 10);
     }
 })
+
 @injectable()
 export class User extends Typegoose {
     static readonly TYPE = 'User';

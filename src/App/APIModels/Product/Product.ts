@@ -2,6 +2,7 @@ import {injectable} from 'inversify';
 import {ApiModel, ApiModelProperty} from 'swagger-express-ts';
 import {prop, Typegoose} from 'typegoose';
 import {Price} from './Price';
+import {UserDetails} from './UserDetails';
 
 @ApiModel({name: Product.TYPE})
 @injectable()
@@ -16,6 +17,13 @@ export class Product extends Typegoose {
     })
     @prop()
     productId: string;
+
+    @ApiModelProperty({
+        example: 'https://www.morele.net/statyw-hama-star-61-4161-torba-361702/' as any,
+        required: true,
+    })
+    @prop()
+    URL: string;
 
     @ApiModelProperty({
         example: 'x-kom' as any,
@@ -45,22 +53,8 @@ export class Product extends Typegoose {
     @prop()
     currentPrice: Price;
 
-    @ApiModelProperty({
-        example: '2019-07-22T18:39:23.139Z' as any,
-        required: false,
-    })
     @prop()
-    addedAt?: string;
-
-    @prop()
-    assignedTo: string[];
-
-    @ApiModelProperty({
-        model: Price.TYPE,
-        required: false,
-    })
-    @prop()
-    expectedPrice?: Price;
+    usersDetails: UserDetails[];
 
     @ApiModelProperty({
         example: 'Komputery' as any,
