@@ -2,57 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5bd451d-9f33-4da8-a4c2-35a80826afb3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/App/APIModels/DiscussionPost/DiscussionPost.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Controllers/DiscussionPanelController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Domain/Repositories/DiscussionPostsRepository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Repositories/MongoDBBasedDiscussionPostsRepository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Controllers/ProductsController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controllers/ProductsController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/inversify.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/inversify.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controllers/DiscussionPanelController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controllers/DiscussionPanelController.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>process.env.JSON__KEY</find>
-      <find>process.env.JWT__KEY</find>
-      <find>?</find>
-      <find>Make sure</find>
-      <find>.HTTP</find>
-      <find>imgSrc</find>
-      <find>make sure</find>
-      <find>post</find>
-      <find>productNumber</find>
-      <find>addedBy</find>
-      <find>userId</find>
-      <find>ALREADY</find>
-      <find>ID</find>
-      <find>save</find>
-      <find>mongoose.</find>
-      <find>addedAt</find>
-      <find>null</find>
-      <find>superagent</find>
-      <find>nodemon</find>
-      <find>uuid</find>
-      <find>morgan</find>
-      <find>lodash</find>
-      <find>expec</find>
-      <find>env</find>
-      <find>user</find>
-      <find>reset</find>
-      <find>getDetails().</find>
-      <find>throw</find>
-      <find>connection</find>
-      <find>MISS</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>'</replace>
-      <replace>undefined</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -144,7 +102,7 @@
       <workItem from="1565159104602" duration="31585000" />
       <workItem from="1566209155822" duration="9008000" />
       <workItem from="1566239121654" duration="19439000" />
-      <workItem from="1575929534044" duration="2944000" />
+      <workItem from="1575929534044" duration="5375000" />
     </task>
     <task id="LOCAL-00001" summary="Initalize, create API for authentication user over tutorial, //TODO use TYPESCRIPT">
       <created>1558733496492</created>

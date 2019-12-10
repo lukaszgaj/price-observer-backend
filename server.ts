@@ -11,7 +11,6 @@ import {SwaggerDefinitionConstant} from 'swagger-express-ts';
 import './config/controllers';
 import {initializeContainer} from './src/config/inversify.config';
 import {JWTBasedAuthProvider} from './src/Infrastructure/Auth/JWTBasedAuthProvider';
-import {ProductsObserver} from './src/Infrastructure/Services/ProductsObserver';
 
 if (!process.env.CONNECTION_URL) {
     throw new Error('Cannot find CONNECTION_URL');
@@ -53,7 +52,7 @@ expressApp.use(swagger.express({
     },
 }));
 
-container.get(ProductsObserver).start();
+// container.get(ProductsObserver).start();
 
 expressApp.use(express.urlencoded({extended: false}));
 

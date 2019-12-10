@@ -1,12 +1,10 @@
+import {plainToClass} from 'class-transformer';
 import express from 'express';
 import {controller, httpGet, httpPost, principal, request, response} from 'inversify-express-utils';
-import {ProductsRepository} from '../../Domain/Repositories/ProductsRepository';
+import {DiscussionPostsRepository} from '../../Domain/Repositories/DiscussionPostsRepository';
 import {Principal} from '../../Infrastructure/Auth/Principal';
+import {DiscussionPost} from '../APIModels/DiscussionPost/DiscussionPost';
 import {checkAuthentication} from '../Utils/checkAuthentication';
-import {DiscussionPostsRepository} from "../../Domain/Repositories/DiscussionPostsRepository";
-import {plainToClass} from "class-transformer";
-import {User} from "../APIModels/User/User";
-import {DiscussionPost} from "../APIModels/DiscussionPost/DiscussionPost";
 
 const path = '/discussion';
 
