@@ -10,5 +10,5 @@ export class DiscussionPost extends Typegoose {
     @prop()
     link: string;
     @prop()
-    date: string;
+    date: number;
 }
