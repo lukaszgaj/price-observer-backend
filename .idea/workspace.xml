@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f5bd451d-9f33-4da8-a4c2-35a80826afb3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/controllers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/controllers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App/Controllers/DiscussionPanelController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controllers/DiscussionPanelController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/inversify.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/inversify.config.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,6 +105,7 @@
       <workItem from="1566209155822" duration="9008000" />
       <workItem from="1566239121654" duration="19439000" />
       <workItem from="1575929534044" duration="5375000" />
+      <workItem from="1575991803581" duration="3878000" />
     </task>
     <task id="LOCAL-00001" summary="Initalize, create API for authentication user over tutorial, //TODO use TYPESCRIPT">
       <created>1558733496492</created>
@@ -131,7 +134,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

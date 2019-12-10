@@ -1,11 +1,12 @@
 import {Container, decorate, injectable} from 'inversify';
 import {Typegoose} from 'typegoose';
+import {DiscussionPost} from '../App/APIModels/DiscussionPost/DiscussionPost';
 import {Product} from '../App/APIModels/Product/Product';
 import {User} from '../App/APIModels/User/User';
-import {DiscussionPostsRepository} from "../Domain/Repositories/DiscussionPostsRepository";
+import {DiscussionPostsRepository} from '../Domain/Repositories/DiscussionPostsRepository';
 import {ProductsRepository} from '../Domain/Repositories/ProductsRepository';
 import {UsersRepository} from '../Domain/Repositories/UsersRepository';
-import {MongoDBBasedDiscussionPostsRepository} from "../Infrastructure/Repositories/MongoDBBasedDiscussionPostsRepository";
+import {MongoDBBasedDiscussionPostsRepository} from '../Infrastructure/Repositories/MongoDBBasedDiscussionPostsRepository';
 import {MongoDBBasedProductsRepository} from '../Infrastructure/Repositories/MongoDBBasedProductsRepository';
 import {MongoDBBasedUsersRepository} from '../Infrastructure/Repositories/MongoDBBasedUsersRepository';
 import {EmailSender} from '../Infrastructure/Services/EmailSender';
@@ -19,6 +20,7 @@ export function initializeContainer() {
 // Models
     container.bind(User).toSelf();
     container.bind(Product).toSelf();
+    container.bind(DiscussionPost).toSelf();
 
 // Respositories
     container.bind(UsersRepository).to(MongoDBBasedUsersRepository);

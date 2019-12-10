@@ -20,6 +20,7 @@ export class DiscussionPanelController {
         @response() res: express.Response,
         @principal() authPrincipal: Principal,
     ) {
+        console.log('asd');
         await checkAuthentication(authPrincipal);
         const posts = await this.postsRepository.getAll();
         res.status(200).json({posts});
