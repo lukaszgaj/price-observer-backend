@@ -1,10 +1,10 @@
+import 'reflect-metadata';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import {InversifyExpressServer} from 'inversify-express-utils';
 import mongoose from 'mongoose';
 import logger from 'morgan';
-import 'reflect-metadata';
 import * as swagger from 'swagger-express-ts';
 import {SwaggerDefinitionConstant} from 'swagger-express-ts';
 import './config/controllers';

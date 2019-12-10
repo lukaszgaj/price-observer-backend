@@ -20,7 +20,6 @@ export class DiscussionPanelController {
         @response() res: express.Response,
         @principal() authPrincipal: Principal,
     ) {
-        console.log('asd');
         await checkAuthentication(authPrincipal);
         const posts = await this.postsRepository.getAll();
         res.status(200).json({posts});
@@ -33,7 +32,7 @@ export class DiscussionPanelController {
         @principal() authPrincipal: Principal,
     ) {
         await checkAuthentication(authPrincipal);
-        const normalizedBody = plainToClass(DiscussionPost, req.body);
+        const normalizedBody = plainToClass(DiscussionPost, req.body.post);
         await this.postsRepository.store(normalizedBody);
         res.status(200).json({message: 'STORED_SUCCESSFULLY'});
     }

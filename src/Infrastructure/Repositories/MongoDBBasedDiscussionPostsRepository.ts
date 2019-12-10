@@ -23,7 +23,10 @@ export class MongoDBBasedDiscussionPostsRepository implements DiscussionPostsRep
 
     async store(post: DiscussionPost): Promise<void> {
         await this.discussionPostModel.create({
-            post,
+            date: post.date,
+            link: post.link,
+            message: post.message,
+            userName: post.userName,
         }).then(res => {
             return res;
         }).catch(e => {
