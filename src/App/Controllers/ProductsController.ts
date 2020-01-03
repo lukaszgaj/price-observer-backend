@@ -4,9 +4,9 @@ import {controller, httpGet, httpPost, principal, request, response} from 'inver
 import {ApiOperationGet, ApiOperationPost, ApiPath} from 'swagger-express-ts';
 import {ProductsRepository} from '../../Domain/Repositories/ProductsRepository';
 import {Principal} from '../../Infrastructure/Auth/Principal';
-import {checkAuthentication} from '../Utils/checkAuthentication';
-import {UserDetails} from '../APIModels/Product/UserDetails';
 import {Product} from '../APIModels/Product/Product';
+import {UserDetails} from '../APIModels/Product/UserDetails';
+import {checkAuthentication} from '../Utils/checkAuthentication';
 
 const path = '/products';
 

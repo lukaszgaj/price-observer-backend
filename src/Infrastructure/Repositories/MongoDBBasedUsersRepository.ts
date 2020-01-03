@@ -48,7 +48,7 @@ export class MongoDBBasedUsersRepository implements UsersRepository {
     async update(user: User): Promise<User | null> {
         return await this.userModel.findOneAndUpdate(
             {
-                _id: user._id
+                _id: user._id,
             },
             user,
             {upsert: false},

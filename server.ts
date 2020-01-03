@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
@@ -11,7 +10,7 @@ import {SwaggerDefinitionConstant} from 'swagger-express-ts';
 import './config/controllers';
 import {initializeContainer} from './src/config/inversify.config';
 import {JWTBasedAuthProvider} from './src/Infrastructure/Auth/JWTBasedAuthProvider';
-import {ProductsObserver} from './src/Infrastructure/Services/ProductsObserver';
+import {ProductsObserver} from "./src/Infrastructure/Services/ProductsObserver";
 
 if (!process.env.CONNECTION_URL) {
     throw new Error('Cannot find CONNECTION_URL');
