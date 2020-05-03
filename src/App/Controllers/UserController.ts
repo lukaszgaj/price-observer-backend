@@ -10,7 +10,6 @@ import {User} from '../APIModels/User/User';
 import {Principal} from '../../Infrastructure/Auth/Principal';
 import {checkAuthentication} from '../Utils/checkAuthentication';
 import {ResetPasswordRequest} from '../APIModels/User/ResetPasswordRequest';
-import {EmailSender} from '../../Infrastructure/Services/EmailSender';
 
 const path = '/user';
 
@@ -22,7 +21,6 @@ const path = '/user';
 export class UserController {
     constructor(
         private usersRepository: UsersRepository,
-        private emailSender: EmailSender,
     ) {
     }
 
@@ -103,37 +101,6 @@ export class UserController {
         await this.usersRepository.store(normalizedBody);
         res.status(200).json({message: 'STORED_SUCCESSFULLY'});
     }
-
-    @httpPost('/reset-password')
-    async resetPassword(
-        @request() req: express.Request,
-        @response() res: express.Response,
-    ) {
-        const normalizedBody = plainToClass(User, req.body);
-        if (!normalizedBody.email) {
-            res.status(400).json({message: 'PLEASE_PROVIDE_VALID_DATA'});
-            return;
-        }
-
-        const user = await this.usersRepository.getUserByEmail(normalizedBody.email);
-
-        if (!user) {
-            res.status(409).json({message: 'USER_WITH_THIS_EMAIL_DOES_NOT_EXIST'});
-            return;
-        }
-
-        const newPassw = Math.random().toString(36).substr(2, 10);
-        user.password = hashSync(newPassw, 10);
-
-        if (await this.usersRepository.update(user)) {
-            if (await this.emailSender.sendResetPasswordEmail(user, newPassw)) {
-                res.status(200).json({message: 'PASSWORD_CHANGED_SUCCESSFULLY'});
-                return;
-            }
-            res.status(500).json({message: 'EMAIL_SENDER_ERROR'});
-        }
-        res.status(500).json({message: 'UNKNOWN_ERROR'});
-    };
 
     @httpPost('/change-password')
     async changePassword(
