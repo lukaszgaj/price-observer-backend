@@ -23,7 +23,7 @@ export class EmailSender {
     sendProductPriceNotificationEmail = (receiver: User, product: Product): Promise<boolean> => {
         return this.sendEmail(this.getPriceNotificationMailOptions(receiver, product))
             .then(() => true)
-            .catch(() => false)
+            .catch(() => false);
     };
 
     sendResetPasswordEmail = (receiver: User, newPassword: string): Promise<boolean> => {
@@ -33,6 +33,7 @@ export class EmailSender {
     };
 
     private sendEmail = (mailOptions: nodemailer.SendMailOptions) => {
+        console.log('sendign email start');
         const transporter: nodemailer.Transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
@@ -40,13 +41,14 @@ export class EmailSender {
                 pass: this.senderEmailPassword,
             }
         });
-
+        console.log('sendign email start', this.senderEmailAddress, this.senderEmailPassword);
         return new Promise(function (fulfilled, reject) {
             transporter.sendMail(mailOptions, (error: any) => {
                 transporter.close();
-                if (error)
-                    reject('CANNOT_SEND_EMAIL');
-                fulfilled('EMAIL_SEND_SUCCESSFULLY')
+                if (error){
+                    console.log('error', error);
+                    reject('CANNOT_SEND_EMAIL');}
+                else {  fulfilled('EMAIL_SEND_SUCCESSFULLY') }
             });
         });
     };

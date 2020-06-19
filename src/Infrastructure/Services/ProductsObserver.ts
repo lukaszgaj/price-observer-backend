@@ -19,19 +19,19 @@ export class ProductsObserver {
     ) {}
 
     start = () => {
-      setInterval(() => this.monitorProducts(), 600000);
+      setInterval(() => this.monitorProducts(), 30000);
     };
 
     private monitorProducts = async () => {
         const productsList = await this.productsRepository.getAll();
-
+    console.log('monitor products');
         if (productsList) {
             await productsList.forEach(async (productFromDB: Product) => {
                 if (productFromDB.shopName === 'morele') {
                     const currentProductPrice: Price | undefined = await this.getCurrentProductPrice(productFromDB);
 
                     if (!currentProductPrice) {
-                        //throw Error('CANNOT_CHECK_CURRENT_PRODUCT_PRICE');
+                        throw Error('CANNOT_CHECK_CURRENT_PRODUCT_PRICE');
                         return;
                     }
 
@@ -46,16 +46,18 @@ export class ProductsObserver {
                             const user: User | null = await this.usersRepository.getUserById(userInfo.userId!);
 
                             if (!user) {
-                                //throw Error('USER_NOT_FOUND');
+                                throw Error('USER_NOT_FOUND');
                                 return;
                             }
 
                             if (!process.env.GMAIL_ADDRESS) {
-                                //throw Error('SENDER_EMAIL_ADDRESS_NOT_FOUND');
+                                throw Error('SENDER_EMAIL_ADDRESS_NOT_FOUND');
                                 return;
                             }
-
+                            console.log('sending email');
                             await this.emailSender.sendProductPriceNotificationEmail(user, productFromDB);
+                            console.log('email sent');
+
                             await this.removeProduct(userInfo.userId!, productFromDB);
                         }
                     });
